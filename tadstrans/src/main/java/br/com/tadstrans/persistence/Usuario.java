@@ -49,6 +49,7 @@ public class Usuario {
 	@JoinColumn(name="tipoperfil")
 	public Perfil getPerfil() {
 		return perfil;
+		
 	}
 
 	public void setPerfil(Perfil perfil) {
@@ -61,6 +62,7 @@ public class Usuario {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
 	
 	
 	
