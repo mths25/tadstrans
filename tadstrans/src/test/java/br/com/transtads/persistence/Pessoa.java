@@ -1,24 +1,49 @@
-package br.com.tadstrans.persistence;
+package br.com.transtads.persistence;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="funcionario")
-public class Funcionario {
+@Table(name="pessoa")
+public class Pessoa {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name="nome")
 	private String nome;
-	private String sobrenome;
+	@Column(name="email")
 	private String email;
-	private String descricao;
+	@Column(name="logradouro")
 	private String logradouro;
+	@Column(name="cep")
 	private String cep;
+	@Column(name="complemento")
 	private String complemento;
+	@Column(name="documento")
 	private String documento;
+	@OneToMany
+	@JoinColumn(name="idcidade")
 	private Cidade cidade;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="idusuario")
 	private Usuario usuario;
+	@OneToOne(mappedBy = "pessoa")
+	private Transferencia transferencia;
+	@OneToMany(mappedBy = "pessoa",
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
+	private Veiculo veiculo;
 	
-	public Funcionario() {}
+	public Pessoa() {}
 
 	public int getId() {
 		return id;
@@ -28,22 +53,14 @@ public class Funcionario {
 		this.id = id;
 	}
 
+
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -51,15 +68,6 @@ public class Funcionario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public String getLogradouro() {
 		return logradouro;
 	}
@@ -67,7 +75,6 @@ public class Funcionario {
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-
 	public String getCep() {
 		return cep;
 	}
@@ -75,7 +82,6 @@ public class Funcionario {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
 	public String getComplemento() {
 		return complemento;
 	}
@@ -83,7 +89,6 @@ public class Funcionario {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-
 	public String getDocumento() {
 		return documento;
 	}
@@ -103,10 +108,12 @@ public class Funcionario {
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 	
+
+	
 	
 }
+

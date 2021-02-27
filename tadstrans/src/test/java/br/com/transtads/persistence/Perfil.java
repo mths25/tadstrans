@@ -1,4 +1,4 @@
-package br.com.tadstrans.persistence;
+package br.com.transtads.persistence;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,15 +20,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name="perfil")
 public class Perfil {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="nome")
 	private String nome;
+	@Column(name="descricao")
 	private String descricao;
+	@OneToMany(mappedBy="perfil",cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Usuario> usuarios;
+	@ManyToMany(targetEntity = Permissao.class, fetch = FetchType.EAGER)
+	@JoinTable(name = "perfilpermissao",
+	joinColumns = {@JoinColumn(name = "idperfil")},
+	inverseJoinColumns = {@JoinColumn(name = "idpermissao")})
 	private Collection<Permissao> permissoes;
 	
 	public Perfil() {}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	public int getId() {
 		return id;
 	}
@@ -36,7 +44,7 @@ public class Perfil {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@Column(name="nome")
+
 	public String getNome() {
 		return nome;
 	}
@@ -44,7 +52,7 @@ public class Perfil {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@Column(name="descricao")
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -56,14 +64,11 @@ public class Perfil {
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
-	@OneToMany(mappedBy="perfil",cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-	@ManyToMany(targetEntity = Permissao.class, fetch = FetchType.EAGER)
-	@JoinTable(name = "perfilpermissao",
-	joinColumns = {@JoinColumn(name = "idperfil")},
-	inverseJoinColumns = {@JoinColumn(name = "idpermissao")})
+
 	public Collection<Permissao> getPermissoes() {
 		return permissoes;
 	}

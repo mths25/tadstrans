@@ -1,21 +1,43 @@
-package br.com.tadstrans.persistence;
+package br.com.transtads.persistence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="veiculo")
 public class Veiculo {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="renavam")
 	private String renavam;
+	@Column(name="chassi")
 	private String chassi;
+	@Column(name="anofabricacao")
 	private String anoFabricacao;
+	@Column(name="anomodelo")
 	private String anoModelo;
+	@Column(name="combustivel")
 	private String combustivel;
+	@Column(name="cor")
 	private String cor;
+	@Column(name="placa")
 	private String placa;
+	@ManyToOne
+	@JoinColumn(name="idpessoa")
 	private Pessoa pessoa;
+	@OneToOne()
+	@JoinColumn(name="idcarro")
 	private Carro carro;
+	@OneToOne(mappedBy = "veiculo")
+	private Transferencia transferencia;
 	
 	public Veiculo(){}
 

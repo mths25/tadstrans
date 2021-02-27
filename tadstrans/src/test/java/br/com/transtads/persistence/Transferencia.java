@@ -1,17 +1,34 @@
-package br.com.tadstrans.persistence;
+package br.com.transtads.persistence;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="transferencia")
 public class Transferencia {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idveiculo")
 	private Veiculo veiculo;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idorigem")
 	private Pessoa pessoaOrigem;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="iddestino")
 	private Pessoa pessoaDestino;
+	@Column(name="datat")
 	private Date dataTransferencia;
+	@Column(name="valor")
 	private float valor;
 	
 	public Transferencia(){}

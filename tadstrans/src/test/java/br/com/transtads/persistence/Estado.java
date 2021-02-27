@@ -1,16 +1,26 @@
-package br.com.tadstrans.persistence;
+package br.com.transtads.persistence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Estado")
 
 public class Estado {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "sigla")
 	private String sigla;
+	@Column(name="nome")
 	private String nome;
-	private Estado estado;
+	@OneToOne(mappedBy ="estado")
+	private Cidade cidade;
 	
 	public Estado() {}
 
@@ -38,13 +48,7 @@ public class Estado {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
-		return estado;
-	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
 	
 	
 }

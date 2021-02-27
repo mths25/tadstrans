@@ -1,4 +1,4 @@
-package br.com.tadstrans.persistence;
+package br.com.transtads.persistence;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,15 +13,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name="usuario")
 public class Usuario {
-	private int id;
-	private String login;
-	private String senha;
-	private Perfil perfil;
-	private Pessoa pessoa;
-	
-	public Usuario() {}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	@Column(name="login")
+	private String login;
+	@Column(name="senha")
+	private String senha;
+	@ManyToOne()
+	@JoinColumn(name="tipoperfil")
+	private Perfil perfil;
+	@OneToOne(mappedBy="usuario")
+	private Pessoa pessoa;
+	@OneToOne(mappedBy="usuario")
+	private Funcionario funcionario;
+	
+	public Usuario() {}
+
 	public int getId() {
 		return id;
 	}
@@ -29,7 +37,6 @@ public class Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@Column(name="login")
 	public String getLogin() {
 		return login;
 	}
@@ -37,7 +44,7 @@ public class Usuario {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	@Column(name="senha")
+
 	public String getSenha() {
 		return senha;
 	}
@@ -45,8 +52,7 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	@ManyToOne()
-	@JoinColumn(name="tipoperfil")
+
 	public Perfil getPerfil() {
 		return perfil;
 		
@@ -55,12 +61,20 @@ public class Usuario {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
-	@OneToOne(mappedBy = "usuario")
+
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 	
 	

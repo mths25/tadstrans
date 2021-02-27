@@ -1,4 +1,4 @@
-package br.com.tadstrans.persistence;
+package br.com.transtads.persistence;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -7,27 +7,41 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="pessoa")
-public class Pessoa {
-
+@Table(name="funcionario")
+public class Funcionario {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private Integer cpf;
+	@Column(name="nome")
 	private String nome;
+	@Column(name="sobrenome")
+	private String sobrenome;
+	@Column(name="email")
 	private String email;
+	@Column(name="descricao")
+	private String descricao;
+	@Column(name="logradouro")
 	private String logradouro;
+	@Column(name="cep")
 	private String cep;
+	@Column(name="complemento")
 	private String complemento;
+	@Column(name="documento")
 	private String documento;
+	@ManyToOne
+	@JoinColumn(name="idcidade")
 	private Cidade cidade;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idusuario")
 	private Usuario usuario;
 	
-	public Pessoa() {}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Funcionario() {}
+
 	public int getId() {
 		return id;
 	}
@@ -35,23 +49,23 @@ public class Pessoa {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@Column(name="cpf")
-	public Integer getCpf() {
-		return cpf;
-	}
 
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
-	}
-	@Column(name="nome")
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@Column(name="email")
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -59,7 +73,15 @@ public class Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Column(name="logradouro")
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public String getLogradouro() {
 		return logradouro;
 	}
@@ -67,7 +89,7 @@ public class Pessoa {
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-	@Column(name="cep")
+
 	public String getCep() {
 		return cep;
 	}
@@ -75,7 +97,7 @@ public class Pessoa {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	@Column(name="complemento")
+
 	public String getComplemento() {
 		return complemento;
 	}
@@ -83,7 +105,7 @@ public class Pessoa {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	@Column(name="documento")
+
 	public String getDocumento() {
 		return documento;
 	}
@@ -91,8 +113,7 @@ public class Pessoa {
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="idcidade")
+
 	public Cidade getCidade() {
 		return cidade;
 	}
@@ -100,17 +121,14 @@ public class Pessoa {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="idusuario")
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 	
-
-	
 	
 }
-
