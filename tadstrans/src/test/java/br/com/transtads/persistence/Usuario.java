@@ -25,8 +25,7 @@ public class Usuario {
 	private Perfil perfil;
 	@OneToOne(mappedBy="usuario")
 	private Pessoa pessoa;
-	@OneToOne(mappedBy="usuario")
-	private Funcionario funcionario;
+
 	
 	public Usuario() {}
 
@@ -69,13 +68,7 @@ public class Usuario {
 		this.pessoa = pessoa;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
 	
 	
 	

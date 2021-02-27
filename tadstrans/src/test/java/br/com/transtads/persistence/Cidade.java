@@ -29,10 +29,6 @@ public class Cidade {
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER)
 	private List<Pessoa>pessoas;
-	@OneToMany(mappedBy="cidade",
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER)
-	private List<Funcionario>funcionarios;
 	
 	public Cidade() {}
 
@@ -68,13 +64,6 @@ public class Cidade {
 		this.pessoas = pessoas;
 	}
 
-	public List<Funcionario> getFuncionarios() {
-		return funcionarios;
-	}
-
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
-	}
 
 
 	

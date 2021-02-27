@@ -1,8 +1,7 @@
 package br.com.transtads.persistence;
 
 import java.util.Collection;
-
-import javax.persistence.CascadeType;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,19 +12,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="permissao")
+@Table(name = "permissao")
 public class Permissao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="descricao")
+	@Column(name = "descricao")
 	private String descricao;
-	@ManyToMany(
-			cascade= {CascadeType.PERSIST, CascadeType.MERGE},
-			mappedBy="perfil",
-			fetch = FetchType.EAGER)
-	private Collection<Perfil> perfis;
-	public Permissao(){}
+	
+	@ManyToMany(mappedBy = "permissoes",fetch = FetchType.EAGER)
+	private Collection<Perfil>perfis;
+
+	
+	public Permissao() {}
+
 	
 	public int getId() {
 		return id;
@@ -50,6 +50,24 @@ public class Permissao {
 	public void setPerfis(Collection<Perfil> perfis) {
 		this.perfis = perfis;
 	}
+	
+	@Override
+    public boolean equals(Object object) {
+        // Basic checks.
+        if (object == this) return true;
+        if (!(object instanceof Permissao)) return false;
+
+        // Property checks.
+        Permissao other = (Permissao) object;
+        return Objects.equals(id, other.id)
+            && Objects.equals(descricao, other.descricao)
+            && Objects.equals(perfis, other.perfis);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, descricao, perfis);
+    }
 	
 	
 	
