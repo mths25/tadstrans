@@ -1,5 +1,7 @@
 package br.com.transtads.persistence;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.transtads.persistence.Usuario;
 
 @Entity
 @Table(name="usuario")
@@ -67,7 +71,25 @@ public class Usuario {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	@Override
+    public boolean equals(Object object) {
+        // Basic checks.
+        if (object == this) return true;
+        if (!(object instanceof Usuario)) return false;
 
+        // Property checks.
+        Usuario other = (Usuario) object;
+        return Objects.equals(id, other.id)
+            && Objects.equals(login, other.login)
+            && Objects.equals(senha, other.senha)
+            && Objects.equals(perfil, other.perfil)
+            && Objects.equals(pessoa, other.pessoa);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, senha, perfil, pessoa);
+    }
 
 	
 	

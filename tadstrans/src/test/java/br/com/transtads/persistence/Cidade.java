@@ -1,6 +1,7 @@
 package br.com.transtads.persistence;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -63,7 +64,25 @@ public class Cidade {
 	public void setPessoas(List<Pessoa> pessoas) {
 		this.pessoas = pessoas;
 	}
+	@Override
+    public boolean equals(Object object) {
+        // Basic checks.
+        if (object == this) return true;
+        if (!(object instanceof Cidade)) return false;
 
+        // Property checks.
+        Cidade other = (Cidade) object;
+        return Objects.equals(id, other.id)
+            && Objects.equals(nome, other.nome)
+            && Objects.equals(estado, other.estado)
+            && Objects.equals(pessoas, other.pessoas);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, estado, pessoas);
+    }
 
 
 	

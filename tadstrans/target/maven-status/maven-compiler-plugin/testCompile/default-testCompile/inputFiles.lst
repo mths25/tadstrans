@@ -1,1 +1,12 @@
-/home/mths/eclipse-workspace/tadstrans/src/test/java/br/com/tadstrans/AppTest.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Marca.java
+/home/mths/tadstrans/tadstrans/src/test/java/util/HibernateUtil.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Cidade.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Carro.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Permissao.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Estado.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Pessoa.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/tadstrans/AppTest.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Perfil.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Transferencia.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Usuario.java
+/home/mths/tadstrans/tadstrans/src/test/java/br/com/transtads/persistence/Veiculo.java

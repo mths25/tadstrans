@@ -1,5 +1,7 @@
 package br.com.transtads.persistence;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +49,25 @@ public class Estado {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	@Override
+    public boolean equals(Object object) {
+        // Basic checks.
+        if (object == this) return true;
+        if (!(object instanceof Estado)) return false;
 
+        // Property checks.
+        Estado other = (Estado) object;
+        return Objects.equals(id, other.id)
+            && Objects.equals(sigla, other.sigla)
+            && Objects.equals(nome, other.nome)
+            && Objects.equals(cidade, other.cidade);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, sigla, nome, cidade);
+    }
 
 	
 	

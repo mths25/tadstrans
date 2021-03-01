@@ -1,6 +1,7 @@
 package br.com.transtads.persistence;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
 @Entity
 @Table(name="transferencia")
 public class Transferencia {
@@ -80,6 +83,25 @@ public class Transferencia {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-	
+	@Override
+    public boolean equals(Object object) {
+        // Basic checks.
+        if (object == this) return true;
+        if (!(object instanceof Transferencia)) return false;
+
+        // Property checks.
+        Transferencia other = (Transferencia) object;
+        return Objects.equals(id, other.id)
+            && Objects.equals(veiculo, other.veiculo)
+            && Objects.equals(pessoaOrigem, other.pessoaOrigem)
+            && Objects.equals(pessoaDestino, other.pessoaDestino)
+            && Objects.equals(dataTransferencia, other.dataTransferencia)
+            && Objects.equals(valor, other.valor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, veiculo, pessoaOrigem, pessoaDestino,dataTransferencia,valor);
+    }
 	
 }

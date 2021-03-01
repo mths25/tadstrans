@@ -1,5 +1,7 @@
 package br.com.transtads.persistence;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,6 +49,23 @@ public class Marca {
 	public void setCarro(Carro carro) {
 		this.carro = carro;
 	}
-	
+	@Override
+    public boolean equals(Object object) {
+        // Basic checks.
+        if (object == this) return true;
+        if (!(object instanceof Marca)) return false;
+
+        // Property checks.
+        Marca other = (Marca) object;
+        return Objects.equals(id, other.id)
+            && Objects.equals(descricao, other.descricao)
+            && Objects.equals(carro, other.carro);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, descricao, carro);
+    }
 	
 }

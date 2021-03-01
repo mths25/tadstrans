@@ -1,5 +1,7 @@
 package br.com.transtads.persistence;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -121,5 +123,26 @@ public class Veiculo {
 		this.carro = carro;
 	}
 	
+	@Override
+	public boolean equals(Object object) {
+		if (object==this) return true;
+		if (!(object instanceof Veiculo)) return false;
+		
+		Veiculo other = (Veiculo) object;
+		return Objects.equals(id, other.id)
+		&& Objects.equals(renavam, other.renavam)
+		&& Objects.equals(chassi, other.chassi)
+		&& Objects.equals(anoFabricacao, other.anoFabricacao)
+		&& Objects.equals(anoModelo, other.anoModelo)
+		&& Objects.equals(combustivel, other.combustivel)
+		&& Objects.equals(cor, other.cor)
+		&& Objects.equals(placa, other.placa)
+		&& Objects.equals(pessoa, other.pessoa)
+		&& Objects.equals(carro, other.carro)
+		&& Objects.equals(transferencia, other.transferencia);
+	}
+    public int hashCode() {
+        return Objects.hash(id, renavam, chassi, anoFabricacao,anoModelo,combustivel,cor,placa,pessoa,carro,transferencia);
+    }
 	
 }
