@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class Marca {
 	@OneToMany(mappedBy="carro",
 			cascade=CascadeType.ALL,
 			fetch=FetchType.EAGER)
-	private Carro carro;
+	private List<Carro> carro;
 	public Marca() {}
 
 	public int getId() {
@@ -42,13 +43,15 @@ public class Marca {
 		this.descricao = descricao;
 	}
 
-	public Carro getCarro() {
+
+	public List<Carro> getCarro() {
 		return carro;
 	}
 
-	public void setCarro(Carro carro) {
+	public void setCarro(List<Carro> carro) {
 		this.carro = carro;
 	}
+
 	@Override
     public boolean equals(Object object) {
         // Basic checks.

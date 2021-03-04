@@ -1,4 +1,4 @@
-package dao;
+package br.com.transtads.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

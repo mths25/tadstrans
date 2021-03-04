@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,18 +37,18 @@ public class Pessoa {
 	private String complemento;
 	@Column(name="documento")
 	private String documento;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="idcidade")
 	private Cidade cidade;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idusuario")
 	private Usuario usuario;
-	@OneToOne(mappedBy = "pessoa")
+	@OneToOne(mappedBy="Pessoa")
 	private Transferencia transferencia;
-	@OneToMany(mappedBy = "pessoa",
+	@OneToMany(mappedBy = "Pessoa",
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER)
-	private Veiculo veiculo;
+	private List<Veiculo> veiculos;
 	
 	public Pessoa() {}
 
@@ -116,6 +118,23 @@ public class Pessoa {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Transferencia getTransferencia() {
+		return transferencia;
+	}
+
+	public void setTransferencia(Transferencia transferencia) {
+		this.transferencia = transferencia;
+	}
+
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
+	}
+
 	@Override
     public boolean equals(Object object) {
         // Basic checks.
