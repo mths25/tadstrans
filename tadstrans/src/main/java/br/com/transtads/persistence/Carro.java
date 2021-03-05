@@ -10,23 +10,32 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="marca")
-public class Marca {
+@Table(name="carro")
+public class Carro {
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "descricao")
+	@Column(name="descricao")
 	private String descricao;
+	
+	@ManyToOne
+	@JoinColumn(name="idmarca")
+	private Marca marca;
+	
 	@OneToMany(mappedBy="carro",
 			cascade=CascadeType.ALL,
-			fetch=FetchType.EAGER)
-	private List<Carro> carro;
-	public Marca() {}
-
+			fetch=FetchType.LAZY)
+	private List<Veiculo> veiculos;
+	
+	
+	
+	public Carro() {}
 	public int getId() {
 		return id;
 	}
@@ -42,33 +51,39 @@ public class Marca {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-
-	public List<Carro> getCarro() {
-		return carro;
+	
+	public Marca getMarca() {
+		return marca;
 	}
 
-	public void setCarro(List<Carro> carro) {
-		this.carro = carro;
+	public List<Veiculo> getVeiculo() {
+		return veiculos;
+	}
+	public void setVeiculo(List<Veiculo> veiculo) {
+		this.veiculos = veiculo;
+	}
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 
 	@Override
     public boolean equals(Object object) {
         // Basic checks.
         if (object == this) return true;
-        if (!(object instanceof Marca)) return false;
+        if (!(object instanceof Carro)) return false;
 
         // Property checks.
-        Marca other = (Marca) object;
+        Carro other = (Carro) object;
         return Objects.equals(id, other.id)
             && Objects.equals(descricao, other.descricao)
-            && Objects.equals(carro, other.carro);
+            && Objects.equals(marca, other.marca)
+            && Objects.equals(veiculos, other.veiculos);
 
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descricao, carro);
+        return Objects.hash(id, descricao, marca, veiculos);
     }
 	
 }

@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.transtads.persistence.Pessoa;
 
 @Entity
 @Table(name="pessoa")
@@ -37,17 +36,20 @@ public class Pessoa {
 	private String complemento;
 	@Column(name="documento")
 	private String documento;
+	
 	@ManyToOne
 	@JoinColumn(name="idcidade")
 	private Cidade cidade;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idusuario")
 	private Usuario usuario;
-	@OneToOne(mappedBy="Pessoa")
+	
+	@OneToOne(mappedBy="pessoaOrigem")
 	private Transferencia transferencia;
-	@OneToMany(mappedBy = "Pessoa",
+	
+	@OneToMany(mappedBy = "pessoa",
 			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER)
+			fetch = FetchType.LAZY)
 	private List<Veiculo> veiculos;
 	
 	public Pessoa() {}

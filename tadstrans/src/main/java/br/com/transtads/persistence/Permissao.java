@@ -20,7 +20,7 @@ public class Permissao {
 	@Column(name = "descricao")
 	private String descricao;
 	
-	@ManyToMany(mappedBy = "permissoes",fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "permissoes",fetch = FetchType.LAZY)
 	private Collection<Perfil>perfis;
 
 	

@@ -7,7 +7,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import util.HibernateUtil;
+import br.com.transtads.util.HibernateUtil;
 
 public abstract class PersistenceDao<T> implements EntityDao<T>,Serializable {
 	protected transient HibernateUtil sessionBuilder;

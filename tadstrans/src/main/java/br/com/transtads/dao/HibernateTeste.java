@@ -8,7 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import br.com.transtads.persistence.Pessoa;
-import util.HibernateUtil;
+import br.com.transtads.util.HibernateUtil;
 
 public class HibernateTeste {
 	public static void main(String[] args) {

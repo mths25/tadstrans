@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,17 +21,22 @@ public class Transferencia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToOne(cascade = CascadeType.ALL)
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idveiculo")
 	private Veiculo veiculo;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idorigem")
 	private Pessoa pessoaOrigem;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="iddestino")
 	private Pessoa pessoaDestino;
+	
 	@Column(name="datat")
 	private Date dataTransferencia;
+	
 	@Column(name="valor")
 	private float valor;
 	

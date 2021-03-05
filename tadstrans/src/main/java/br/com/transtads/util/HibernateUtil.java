@@ -1,4 +1,4 @@
-package util;
+package br.com.transtads.util;
 
 import org.hibernate.SessionFactory;
 import java.util.Properties;
@@ -27,7 +27,7 @@ public class HibernateUtil {
 				Configuration configuration = new Configuration();
 				Properties settings = new Properties();
 				settings.put(Environment.DRIVER, "org.postgresql.Driver");
-				settings.put(Environment.URL,"jdbc:postgresql://localhost:5432/transtads");
+				settings.put(Environment.URL,"jdbc:postgresql://localhost:5433/transtads");
 				settings.put(Environment.USER, "postgres");
 				settings.put(Environment.PASS, "admin");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");

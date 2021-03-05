@@ -1,15 +1,18 @@
 package br.com.transtads.persistence;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,14 +35,19 @@ public class Veiculo {
 	private String cor;
 	@Column(name="placa")
 	private String placa;
+	
 	@ManyToOne
 	@JoinColumn(name="idpessoa")
 	private Pessoa pessoa;
-	@OneToOne()
+	
+	@ManyToOne
 	@JoinColumn(name="idcarro")
 	private Carro carro;
-	@OneToOne(mappedBy = "veiculo")
-	private Transferencia transferencia;
+	
+	@OneToMany(mappedBy = "veiculo",
+			cascade=CascadeType.ALL,
+			fetch=FetchType.LAZY)
+	private List<Transferencia> transferencia;
 	
 	public Veiculo(){}
 

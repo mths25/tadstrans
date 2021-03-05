@@ -29,10 +29,10 @@ public class Perfil {
 	@Column(name = "nome")
 	private String nome;
 	
-	@OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Usuario> usuarios;
 	
-	@ManyToMany(targetEntity = Permissao.class,fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = Permissao.class,fetch = FetchType.LAZY)
 	@JoinTable(name = "perfilpermissao",
 	joinColumns = {@JoinColumn(name = "idperfil")},
 	inverseJoinColumns = {@JoinColumn(name = "idpermissao")})
