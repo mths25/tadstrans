@@ -12,7 +12,17 @@ import br.com.transtads.dao.PersistenceDao;
 import br.com.transtads.persistence.Usuario;
 
 public class UsuarioDao  extends PersistenceDao<Usuario> {
+	public Usuario getBy(String attribute, Object value) {
+        Criterion ctrn = Restrictions.eq(attribute, value);
+        return getBy(ctrn);
+    }
+	
 
+    
+    public List<Usuario>getList(String search){
+    	Criterion ctrnDescription = Restrictions.like("nome", "%" + search + "%").ignoreCase();
+        return getList(ctrnDescription, Order.asc("id"));
+    }
 	
 	public boolean getByLoginPassword(String login, String senha) {
         String sqlScript = "Select 1 from Usuario where login = :login and senha = :senha ;";
