@@ -9,7 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import br.com.transtads.persistence.Pessoa;
-import br.com.transtads.persistence.Usuario;
+import br.com.transtads.persistence.Carro;
 import br.com.transtads.util.HibernateUtil;
 
 public class HibernateTeste {
@@ -17,13 +17,13 @@ public class HibernateTeste {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();	
 		
-		//Query query = session.createQuery("FROM Usuario");
-		UsuarioDao uDau = new UsuarioDao();
-		List<Usuario> usuarios = uDau.getList();
+		//Query query = session.createQuery("FROM Carro");
+		CarroDao uDau = new CarroDao();
+		List<Carro> Carros = uDau.getList();
 		
 		
-		for(Usuario u: usuarios) {
-			System.out.println(u.getLogin());
+		for(Carro u: Carros) {
+			System.out.println(u.getDescricao());
 		}
 
 	}

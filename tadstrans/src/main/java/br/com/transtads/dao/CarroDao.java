@@ -6,24 +6,22 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.transtads.persistence.Marca;
-import br.com.transtads.persistence.Marca;
+import br.com.transtads.persistence.Carro;
 
-public class MarcaDao extends PersistenceDao<Marca>{
-	
-    public Marca getBy(String attribute, Object value) {
+
+public class CarroDao extends PersistenceDao<Carro>{
+    public Carro getBy(String attribute, Object value) {
         Criterion ctrn = Restrictions.eq(attribute, value);
         return getBy(ctrn);
     }
     
-    public List<Marca>getList(){
+    public List<Carro>getList(){
     	
     	return getList(Order.asc("id"));
     }
     
-    public List<Marca>getList(String search){
+    public List<Carro>getList(String search){
     	Criterion ctrnDescription = Restrictions.like("descricao", "%" + search + "%").ignoreCase();
         return getList(ctrnDescription, Order.asc("id"));
     }
-    
 }
