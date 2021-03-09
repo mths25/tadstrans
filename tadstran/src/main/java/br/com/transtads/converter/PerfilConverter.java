@@ -18,6 +18,7 @@ public class PerfilConverter implements Converter{
         return null;
     }
 
+	
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
         if (value instanceof Perfil) {
