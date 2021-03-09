@@ -1,31 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:comps="http://java.sun.com/jsf/composite/comps">
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="templates/basePage.xhtml">
+<h:head>
 
-	<ui:define name="content">
-		<p:panelGrid>
-			<h:form>
-				<p:messages id="loginError" autoUpdate="true" />
-				<h:outputText value="Login" />
-				<p:inputText id="inputlogin" value="#{loginbean.usuario.login}" />
-				<br />
-				<h:outputText value="Senha" />
-				<p:inputText id="inputSenha" value="#{loginbean.usuario.senha}" />
-				<br />
+</h:head>
 
-				<p:commandButton value="Entrar" action="#{loginbean.logIn}" />
-			</h:form>
-		</p:panelGrid>
-	</ui:define>
+<h:body>
+  <h:form>
+    <p:messages id="messages" />
+    <p:panelGrid columns="2">
+      <p:outputLabel for="nomeUsuario" value="Nome
+      Usuário:" />
+      <p:inputText id="nomeUsuario"
+      value="#{loginbean.login}" />
 
-</ui:composition>
+      <p:outputLabel for="senha" value="Senha:" />
+      <p:password id="senha" value="#{loginbean.senha}" />
+
+      <p:commandButton value="Enviar"
+      icon="ui-icon-star" action="#{loginbean.logIn()}" ajax="false">
+      </p:commandButton>
+
+    </p:panelGrid>
+  </h:form>
+</h:body>
 </html>
