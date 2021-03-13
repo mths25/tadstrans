@@ -4,26 +4,78 @@
   xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
+	<meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            />
+        <title>TadsTrans</title>
+        <!-- Bootstrap core CSS -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+            />
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.materialdesignicons.com/5.5.55/css/materialdesignicons.min.css"
+            />
 </h:head>
-
+<style>
+	html,
+	body {
+	    height: 100%;
+	}
+	.list-group-item {
+	    color: #8391a2;
+	}
+	.list-group-item a {
+	    color: #8391a2;
+	}
+ </style>
 <h:body>
-  <h:form>
-    <p:messages id="messages" />
-    <p:panelGrid columns="2">
-      <p:outputLabel for="nomeUsuario" value="Nome
-      Usuário:" />
-      <p:inputText id="nomeUsuario"
-      value="#{loginbean.login}" />
 
-      <p:outputLabel for="senha" value="Senha:" />
-      <p:password id="senha" value="#{loginbean.senha}" />
-
-      <p:commandButton value="Enviar"
-      icon="ui-icon-star" action="#{loginbean.logIn()}" ajax="false">
-      </p:commandButton>
-
-    </p:panelGrid>
-  </h:form>
+<div class="container"> 
+            <div class="row justify-content-center align-content-center h-100">
+                <div class="col col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            TADSTran
+                        </div>
+                        <div class="card-body">
+                            <h:form class="form-group pa-10">
+							    <p:messages id="loginError" autoUpdate="true" />
+							    <p:panelGrid columns="2">
+								      <p:outputLabel for="inputlogin" value="Email:" />
+								      <p:inputText id="inputlogin" value="#{loginbean.usuario.login}" class="form-control"/>
+								      <p:outputLabel for="inputSenha" value="Senha:" />
+								      <p:password id="inputSenha" value="#{loginbean.usuario.senha}" class="form-control"/>
+								      <p:commandButton value="Entrar" action="#{loginbean.logIn}" ajax="false" class="btn btn-success"></p:commandButton>
+							    </p:panelGrid>
+							  </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fixed-bottom card-footer text-center">
+                Em caso de problemas contactar o administrador.
+            </div>
+        </div>
 </h:body>
 </html>
