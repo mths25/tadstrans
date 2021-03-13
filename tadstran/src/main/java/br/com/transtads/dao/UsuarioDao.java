@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.transtads.dao.PersistenceDao;
 import br.com.transtads.persistence.Usuario;
+import br.com.transtads.persistence.Pessoa;
 
 public class UsuarioDao  extends PersistenceDao<Usuario> {
 	public Usuario getBy(String attribute, Object value) {
@@ -35,6 +36,23 @@ public class UsuarioDao  extends PersistenceDao<Usuario> {
         	return true;
         else
         	return false;
+    }
+	
+	public Usuario getLast() {
+        String sqlScript = "SELECT * FROM Usuario where id = (SELECT max(id) FROM Usuario);";
+        Session session = sessionBuilder.getSession();
+        SQLQuery qr = session.createSQLQuery(sqlScript);
+        Usuario usuario = new Usuario();
+        List<Object[]> objLst = qr.list();
+        if (!objLst.isEmpty()) {
+            for (Object[] obj : objLst) {
+                usuario = new Usuario(
+                        (int) obj[0], (String) obj[1],
+                        (int) obj[2], (String) obj[3]);
+            }
+            return usuario;
+            }
+        return null;
     }
 	
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:form>
+	<ul class="list-unstyled components">
+		<li class="active"><a href="#personsSubmenu"
+			data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Dados Pessoais</a>
+			<ul class="collapse list-unstyled" id="personsSubmenu">
+				<li><h:commandLink value="Alterar" action="dadosPessoa" /></li>
+			</ul> </li>
+		<li class="active"><a href="#personsSubmenu1"
+			data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Veiculos</a>
+			<ul class="collapse list-unstyled" id="personsSubmenu1">
+				<li><h:commandLink value="Listar Veiculos" action="veiculoPessoa" /></li>
+				<li><h:commandLink value="Transferencias" action="transferenciaVeiculo" /></li>
+			</ul>
+		</li>
+	</ul>
+</h:form>
+
+</html>

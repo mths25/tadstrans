@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:comps="http://java.sun.com/jsf/composite/comps">
 
 <h:head>
@@ -42,45 +41,74 @@
             href="https://cdn.materialdesignicons.com/5.5.55/css/materialdesignicons.min.css"
             />
             <style>
-				html,
-				body {
-				    height: 100%;
-				}
-				.list-group-item {
-				    color: #8391a2;
-				}
-				.list-group-item a {
-				    color: #8391a2;
-				}
-			 </style>
+			html,
+			body {
+			    height: 100%;
+			}
+			.list-group-item {
+			    color: #8391a2;
+			}
+			.list-group-item a {
+			    color: #8391a2;
+			}
+		 </style>
 </h:head>
+
 <h:body>
 
 <div class="container"> 
-            <div class="row justify-content-center align-content-center h-100">
-                <div class="col col-md-4">
+            <div class="row justify-content-center align-content-center h-200">
+                <div class="col col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            TADSTran
+                            Cadastro de Usuario
                         </div>
                         <div class="card-body">
-                            <h:form class="form-group pa-10">
+                            <h:form class="form-group pa-20">
 							    <p:messages id="loginError" autoUpdate="true" />
-							    <p:panelGrid columns="2" border="0">
-								      <p:outputLabel for="inputlogin" value="Email:" />
-								      <p:inputText id="inputlogin" value="#{loginbean.usuario.login}" class="form-control"/>
-								      <p:outputLabel for="inputSenha" value="Senha:" />
-								      <p:password id="inputSenha" value="#{loginbean.usuario.senha}" class="form-control"/>
-								      <p:commandButton value="Entrar" action="#{loginbean.logIn}" ajax="false" class="btn btn-success"></p:commandButton>
-								      <p:commandButton value="Cadastre-se!" action="cadastroLogin" actionListener="#{usuariobean.add}"></p:commandButton>
-							    </p:panelGrid>
+							    <h:panelGrid columns="6" border="0">
+
+									<h:outputText value="Email: " />
+									<p:inputText id="Email" value="#{pessoabean.pessoa.usuario.login}" />
+									<p:message for="Email" display="text" />
+									
+									<h:outputText value="Senha: " />
+									<p:inputText id="senha" type="password" value="#{pessoabean.pessoa.usuario.senha}" />
+									<p:message for="senha" display="text" />
+					
+									<h:outputText value="Nome: " />
+									<p:inputText id="nome" value="#{pessoabean.pessoa.nome}" />
+									<p:message for="nome" display="text" />
+										
+									<h:outputText value="CPF: " />
+									<p:inputText id="cpf" value="#{pessoabean.pessoa.documento}" />
+									<p:message for="cpf" display="text" />
+									
+									<h:outputText value="CEP: " />
+									<p:inputText id="cep" value="#{pessoabean.pessoa.cep}" />
+									<p:message for="cep" display="text" />
+					
+									<h:outputText value="Cidade: " />
+									<p:inputText id="cidade" value="#{pessoabean.pessoa.cidade}" />
+									<p:message for="cidade" display="text" />
+									
+									<h:outputText value="Logradouro: " />
+									<p:inputText id="logradouro" value="#{pessoabean.pessoa.logradouro}" />
+									<p:message for="logradouro" display="text" />
+									
+									<h:outputText value="Complemento: " />
+									<p:inputText id="complemento" value="#{pessoabean.pessoa.complemento}" />
+									<p:message for="complemento" display="text" />
+									
+									<p:commandButton value="Salvar" ajax="false" action="#{pessoabean.save}" />
+								</h:panelGrid>
 							  </h:form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="fixed-bottom card-footer text-center">
-                Em caso de problemas contactar o administrador.
+                TADSTran - Todos os direitos reservados.
             </div>
         </div>
 </h:body>

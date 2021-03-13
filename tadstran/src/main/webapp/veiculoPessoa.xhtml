@@ -1,154 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="templatePessoa.xhtml"
+<ui:composition template="templates/baseLayout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="titulo">Veículo</ui:define>
-    <ui:define name="conteudo">
+    <ui:define name="content">
         <div style="padding: 1%; padding-top: 0">
-            <p:dataTable value="#{veiculoMB.veiculos}" var="veiculo"  emptyMessage="Nenhum veículo encontrado.">  
+            <p:dataTable style="width: 100%" id="list" var="objeto"
+				value="#{veiculobean.listagem()}" lazy="true" paginator="true"
+				rows="10"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				paginatorPosition="bottom"
+				rowsPerPageTemplate="5,10,15"> 
                 <f:facet name="header" >
-                    <h:outputText style="font-size: x-large" value="Veículos" />
+                    <h:outputText style="font-size: x-large" value="Listagem de Veículos" />
                 </f:facet>
-                <p:column headerText="Renavam" width="24.25">
-                    <h:outputText value="#{veiculo.renavam}" />
+                <p:column headerText="Renavam">
+                    <h:outputText value="#{objeto.renavam}" />
                 </p:column>                                
-                <p:column headerText="Marca" width="24.25">
-                    <h:outputText value="#{veiculo.marca}" />
+                <p:column headerText="Chassi">
+                    <h:outputText value="#{objeto.chassi}" />
                 </p:column>                                
-                <p:column headerText="Modelo" width="24.25">
-                    <h:outputText value="#{veiculo.modelo}" />
+                <p:column headerText="Ano Fabricação">
+                    <h:outputText value="#{objeto.anoFabricacao}" />
                 </p:column>                                
-                <p:column headerText="Placa" width="24.25">
-                    <h:outputText value="#{veiculo.placa}" />
-                </p:column>                               
-                <p:column headerText="Ver" style="text-align: center" width="1"> 
+                <p:column headerText="Ano Modelo">
+                    <h:outputText value="#{objeto.anoModelo}" />
+                </p:column>
+                 <p:column headerText="Carro">
+                    <h:outputText value="#{objeto.carro.marca.descricao}" />
+                </p:column> 
+                <p:column headerText="Cor">
+                    <h:outputText value="#{objeto.cor}" />
+                </p:column>                                 
+                <p:column headerText="Ver" style="text-align: center" width="10%"> 
                     <p:commandButton icon="ui-icon-search" style="font-size: small" type="buttom">
-                        <p:ajax event="click" listener="#{veiculoMB.setVerVeiculo(veiculo)}" oncomplete="PF('dialogDadosVeiculo').show()" />
+                        
                     </p:commandButton>
                 </p:column>                                
-                <p:column headerText="Editar" style="text-align: center" width="1"> 
+                <p:column headerText="Transferir" style="text-align: center" width="10%"> 
                     <p:commandButton icon="ui-icon-pencil" style="font-size: small" type="buttom">
-                        <p:ajax event="click" listener="#{veiculoMB.setEditVeiculo(veiculo)}" oncomplete="PF('dialogVeiculo').show()" />
+                       
                     </p:commandButton>
-                </p:column>                                
-                <p:column headerText="Remover" style="text-align: center" width="1"> 
-                    <p:commandButton icon="ui-icon-trash" style="font-size: small" />
-                </p:column>                                
+                </p:column>                                                               
             </p:dataTable> 
             <br />
-            <div style="text-align: right">
-                <p:commandButton value="Novo Veículo" style="font-size: medium" type="buttom">
-                    <p:ajax event="click" listener="#{veiculoMB.setNovoVeiculo()}" oncomplete="PF('dialogVeiculo').show()" />
-                </p:commandButton>
-            </div>
-            <p:dialog header="Veiculo" id="dialogVeiculo" widgetVar="dialogVeiculo" modal="true">
-                <div class="ui-g">
-                    <div class="ui-g-12">
-                        <h2 class="titH2">Dados do Veículo</h2>
-                    </div>
-                    <div class="ui-g-4">
-                        <p:outputLabel for="renavam" value="Renavam" /><br/>
-                        <p:inputMask id="renavam" value="#{veiculoMB.veiculo.renavam}" mask="99999999999" required="true" requiredMessage="Digite o renavam do veiculo">
-                        </p:inputMask>
-                        <br /><br />
-                        <p:outputLabel for="chassi" value="Chassi" /><br/>
-                        <p:inputText id="chassi" value="#{veiculoMB.veiculo.chassi}" required="true" requiredMessage="Digite o chassi do veiculo" /> 
-                        <br /><br />
-                        <p:outputLabel for="cor" value="Cor" /><br/>
-                        <p:inputText id="cor" value="#{veiculoMB.veiculo.cor}" required="true" requiredMessage="Digite a cor do veiculo">
-                            <f:validateRegex pattern="[a-zA-Z]"/>
-                        </p:inputText>
-                        <br /><br />
-                        <!--<p:outputLabel for="proprietario" value="Proprietario"/><br />
-                        <p:selectOneMenu value="#{veiculoMB.pessoaSelect}" id="proprietario">                            
-                            <f:selectItems value="#{veiculoMB.pessoas}" var="pessoa" itemLabel="#{pessoa.nome}" itemValue="#{pessoa}" />
-                        </p:selectOneMenu> -->
-
-                    </div>                    
-                    <div class="ui-g-4">                        
-                        <p:outputLabel for="ano" value="Ano de fabricação" /><br />
-                        <p:inputMask id="ano" value="#{veiculoMB.veiculo.anoFab}" mask="9999" required="true" requiredMessage="Digite o ano de fabricação do veículo" validatorMessage="Ano inválido" >
-                            <f:validateLongRange minimum="1807" maximum="2030"/> 
-                        </p:inputMask>
-                        <br /><br />
-                        <p:outputLabel for="anoModelo" value="Ano de modelo" /><br />
-                        <p:inputMask id="anoModelo" value="#{veiculoMB.veiculo.anoModelo}" mask="9999" required="true" requiredMessage="Digite o ano do modelo de veículo" validatorMessage="Ano inválido" >
-                            <f:validateLongRange minimum="1807" maximum="2030"/> 
-                        </p:inputMask>
-                        <br /><br />
-                        <p:outputLabel for="placa" value="Placa" /><br/>
-                        <p:inputMask id="placa" value="#{veiculoMB.veiculo.placa}" mask="aaa-9999" required="true" requiredMessage="Digite a placa do veiculo" />
-                        <br /><br />
-                        <p:outputLabel for="comb" value="Combustivel"/><br />
-                        <p:selectOneMenu id="comb" value="#{veiculoMB.veiculo.combustivel}" >
-                            <f:selectItem itemLabel="Gasolina" itemValue="0" />                        
-                            <f:selectItem itemLabel="Alcool" itemValue="1" />
-                            <f:selectItem itemLabel="Flex" itemValue="2" />
-                        </p:selectOneMenu>
-                    </div>                    
-                    <div class="ui-g-4">
-                        <p:outputLabel for="marca" value="Marca" /><br/>
-                        <p:inputText id="marca" value="#{veiculoMB.veiculo.marca}" required="true" requiredMessage="Digite a marca do veiculo" />                                                
-                        <br /><br />
-                        <p:outputLabel for="modelo" value="Modelo" /><br/>
-                        <p:inputText id="modelo" value="#{veiculoMB.veiculo.modelo}" required="true" requiredMessage="Digite o modelo do veiculo" />                                                
-                    </div> 
-                    <div class="ui-g-12" style="text-align: center">
-                        <p:commandButton value="Salvar" style="font-size: medium" />
-                    </div>
-                </div>                                 
-            </p:dialog>
-            <p:dialog header="Veiculo" id="dialogDadosVeiculo" widgetVar="dialogDadosVeiculo" modal="true">
-                <div class="ui-g">
-                    <div class="ui-g-12">
-                        <p:panelGrid columns="2">
-                            <f:facet name="header" >
-                                <h:outputText style="font-size: x-large" value="Dados do veículo" />
-                            </f:facet>
-
-                            <h:outputText value="Renavam:"/>
-                            <h:outputText value="#{veiculoMB.veiculo.renavam}"/>
-
-                            <h:outputText value="Chassi:"/>
-                            <h:outputText value="#{veiculoMB.veiculo.chassi}"/>
-                            
-                            <h:outputText value="Marca"/>
-                            <h:outputText value="#{veiculoMB.veiculo.marca}"/>
-                            
-                            <h:outputText value="Modelo"/>
-                            <h:outputText value="#{veiculoMB.veiculo.modelo}"/>
-                            
-                            <h:outputText value="Ano de Fabricação"/>
-                            <h:outputText value="#{veiculoMB.veiculo.anoFab}"/>
-                            
-                            <h:outputText value="Ano do Modelo"/>
-                            <h:outputText value="#{veiculoMB.veiculo.anoModelo}"/>
-
-                            <h:outputText value="Combustivel:"/>
-                            <h:outputText value="Gasolina" rendered="#{veiculoMB.veiculo.combustivel == 0}"/>
-                            <h:outputText value="Alcool" rendered="#{veiculoMB.veiculo.combustivel == 1}"/>
-                            <h:outputText value="Flex" rendered="#{veiculoMB.veiculo.combustivel == 2}"/>
-
-                            <h:outputText value="Cor"/>
-                            <h:outputText value="#{veiculoMB.veiculo.cor}"/>
-
-                            <h:outputText value="Placa:"/>
-                            <h:outputText value="#{veiculoMB.veiculo.placa}"/>
-
-                            <h:outputText value="Proprietário"/>
-                            <h:outputText value="#{veiculoMB.veiculo.dono.nome}"/>
-                        </p:panelGrid>                        
-                    </div>                                        
-                </div>                                           
-            </p:dialog>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no"  />
-                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />                
-            </p:confirmDialog>
         </div>                          
     </ui:define>
 </ui:composition>
