@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import br.com.transtads.persistence.Pessoa;
+import br.com.transtads.persistence.Veiculo;
 import br.com.transtads.persistence.Transferencia;
 import br.com.transtads.util.HibernateUtil;
 
@@ -20,8 +20,8 @@ public class HibernateTeste {
 		 */
 		
 		
-		PessoaDao pdao = new PessoaDao();
-		List<Pessoa>list = pdao.getGenericSearch("antelectus");
-		System.out.println(list);
+		VeiculoDao pdao = new VeiculoDao();
+		Veiculo v = pdao.getBy("placa", "RKE2534");
+		System.out.println(v);
 	}
 }
