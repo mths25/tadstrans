@@ -1,7 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:comps="http://java.sun.com/jsf/composite/comps">
 
 <h:head>
 	<meta charset="utf-8" />
@@ -36,19 +41,19 @@
             rel="stylesheet"
             href="https://cdn.materialdesignicons.com/5.5.55/css/materialdesignicons.min.css"
             />
+            <style>
+				html,
+				body {
+				    height: 100%;
+				}
+				.list-group-item {
+				    color: #8391a2;
+				}
+				.list-group-item a {
+				    color: #8391a2;
+				}
+			 </style>
 </h:head>
-<style>
-	html,
-	body {
-	    height: 100%;
-	}
-	.list-group-item {
-	    color: #8391a2;
-	}
-	.list-group-item a {
-	    color: #8391a2;
-	}
- </style>
 <h:body>
 
 <div class="container"> 
@@ -61,12 +66,13 @@
                         <div class="card-body">
                             <h:form class="form-group pa-10">
 							    <p:messages id="loginError" autoUpdate="true" />
-							    <p:panelGrid columns="2">
+							    <p:panelGrid columns="2" border="0">
 								      <p:outputLabel for="inputlogin" value="Email:" />
 								      <p:inputText id="inputlogin" value="#{loginbean.usuario.login}" class="form-control"/>
 								      <p:outputLabel for="inputSenha" value="Senha:" />
 								      <p:password id="inputSenha" value="#{loginbean.usuario.senha}" class="form-control"/>
 								      <p:commandButton value="Entrar" action="#{loginbean.logIn}" ajax="false" class="btn btn-success"></p:commandButton>
+								      <p:commandButton value="Cadastre-se!" action="cadastroLogin" actionListener="#{usuariobean.add}"></p:commandButton>
 							    </p:panelGrid>
 							  </h:form>
                         </div>

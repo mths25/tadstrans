@@ -54,7 +54,7 @@ public class PessoaBean {
 		UsuarioDao udao = new UsuarioDao();
 		if (pessoa.getId() == 0) {
 			udao.inserir(usuario);
-			pessoa.setUsuario(udao.getLast()); //Para salvar no banco, gerar Id e então ser possível gerar a vinculação com pessoa
+			//pessoa.setUsuario(udao.getLast()); //Para salvar no banco, gerar Id e então ser possível gerar a vinculação com pessoa
 			pedao.inserir(pessoa);
 		} else {
 			udao.alterar(pessoa.getUsuario());

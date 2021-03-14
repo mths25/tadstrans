@@ -38,22 +38,15 @@ public class UsuarioDao  extends PersistenceDao<Usuario> {
         	return false;
     }
 	
-	public Usuario getLast() {
-        String sqlScript = "SELECT * FROM Usuario where id = (SELECT max(id) FROM Usuario);";
-        Session session = sessionBuilder.getSession();
-        SQLQuery qr = session.createSQLQuery(sqlScript);
-        Usuario usuario = new Usuario();
-        List<Object[]> objLst = qr.list();
-        if (!objLst.isEmpty()) {
-            for (Object[] obj : objLst) {
-                usuario = new Usuario(
-                        (int) obj[0], (String) obj[1],
-                        (int) obj[2], (String) obj[3]);
-            }
-            return usuario;
-            }
-        return null;
-    }
+	/*
+	 * public Usuario getLast() { String sqlScript =
+	 * "SELECT * FROM Usuario where id = (SELECT max(id) FROM Usuario);"; Session
+	 * session = sessionBuilder.getSession(); SQLQuery qr =
+	 * session.createSQLQuery(sqlScript); Usuario usuario = new Usuario();
+	 * List<Object[]> objLst = qr.list(); if (!objLst.isEmpty()) { for (Object[] obj
+	 * : objLst) { usuario = new Usuario( (int) obj[0], (String) obj[1], (int)
+	 * obj[2], (String) obj[3]); } return usuario; } return null; }
+	 */
 	
 }
 	

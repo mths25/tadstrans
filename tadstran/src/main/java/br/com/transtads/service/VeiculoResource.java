@@ -18,6 +18,8 @@ import javax.ws.rs.core.UriInfo;
 import br.com.transtads.dao.VeiculoDao;
 import br.com.transtads.persistence.Veiculo;
 
+
+@Path("veiculo")
 public class VeiculoResource {
 	VeiculoDao VeiculoDao;
 	@Context

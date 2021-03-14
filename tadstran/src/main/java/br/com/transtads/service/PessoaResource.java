@@ -19,7 +19,7 @@ import br.com.transtads.dao.PessoaDao;
 import br.com.transtads.persistence.Pessoa;
 
 
-
+@Path("pessoa")
 public class PessoaResource {
 	PessoaDao PessoaDao;
 	@Context

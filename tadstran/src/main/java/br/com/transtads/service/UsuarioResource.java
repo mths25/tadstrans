@@ -19,7 +19,7 @@ import br.com.transtads.dao.UsuarioDao;
 import br.com.transtads.persistence.Usuario;
 
 
-
+@Path("usuario")
 public class UsuarioResource {
 	UsuarioDao UsuarioDao;
 	@Context

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="usuario")
@@ -26,6 +28,7 @@ public class Usuario {
 	@ManyToOne()
 	@JoinColumn(name="tipoperfil")
 	private Perfil perfil;
+	@JsonIgnore
 	@OneToOne(mappedBy="usuario")
 	private Pessoa pessoa;
 
