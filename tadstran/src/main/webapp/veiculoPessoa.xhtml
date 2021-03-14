@@ -9,11 +9,11 @@
     <ui:define name="content">
         <div style="padding: 1%; padding-top: 0">
             <p:dataTable style="width: 100%" id="list" var="objeto"
-				value="#{veiculobean.listagem()}" lazy="true" paginator="true"
-				rows="10"
-				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-				paginatorPosition="bottom"
-				rowsPerPageTemplate="5,10,15"> 
+                         value="#{veiculobean.listagem()}" lazy="true" paginator="true"
+                         rows="10"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         paginatorPosition="bottom"
+                         rowsPerPageTemplate="5,10,15"> 
                 <f:facet name="header" >
                     <h:outputText style="font-size: x-large" value="Listagem de Veículos" />
                 </f:facet>
@@ -29,7 +29,7 @@
                 <p:column headerText="Ano Modelo">
                     <h:outputText value="#{objeto.anoModelo}" />
                 </p:column>
-                 <p:column headerText="Carro">
+                <p:column headerText="Carro">
                     <h:outputText value="#{objeto.carro.marca.descricao}" />
                 </p:column> 
                 <p:column headerText="Cor">
@@ -37,16 +37,51 @@
                 </p:column>                                 
                 <p:column headerText="Ver" style="text-align: center" width="10%"> 
                     <p:commandButton icon="ui-icon-search" style="font-size: small" type="buttom">
-                        
+                        <p:ajax event="click" listener="#{veiculobean.setVerVeiculo(objeto)}" oncomplete="PF('dialogDadosVeiculo').show()" />
                     </p:commandButton>
                 </p:column>                                
                 <p:column headerText="Transferir" style="text-align: center" width="10%"> 
-                    <p:commandButton icon="ui-icon-pencil" style="font-size: small" type="buttom">
-                       
+                    <p:commandButton icon="ui-icon-refresh" style="font-size: small" type="buttom">
+
                     </p:commandButton>
                 </p:column>                                                               
             </p:dataTable> 
             <br />
+            <p:dialog header="Veiculo" id="dialogDadosVeiculo" widgetVar="dialogDadosVeiculo" modal="true">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <p:panelGrid columns="2">
+                            <f:facet name="header" >
+                                <h:outputText style="font-size: x-large" value="Dados do veículo" />
+                            </f:facet>
+
+                            <h:outputText value="Renavam:"/>
+                            <h:outputText value="#{veiculobean.veiculo.renavam}"/>
+
+                            <h:outputText value="Chassi:"/>
+                            <h:outputText value="#{veiculobean.veiculo.chassi}"/>
+
+                            <h:outputText value="Ano de Fabricação"/>
+                            <h:outputText value="#{veiculobean.veiculo.anoFabricacao}"/>
+
+                            <h:outputText value="Ano do Modelo"/>
+                            <h:outputText value="#{veiculobean.veiculo.anoModelo}"/>
+
+                            <h:outputText value="Combustivel:"/>
+                            <h:outputText value="#{veiculobean.veiculo.combustivel}"/>
+
+                            <h:outputText value="Cor"/>
+                            <h:outputText value="#{veiculobean.veiculo.cor}"/>
+
+                            <h:outputText value="Placa:"/>
+                            <h:outputText value="#{veiculobean.veiculo.placa}"/>
+
+                            <h:outputText value="Proprietário"/>
+                            <h:outputText value="#{veiculobean.veiculo.pessoa.nome}"/>
+                        </p:panelGrid>                        
+                    </div>                                        
+                </div>                                           
+            </p:dialog>
         </div>                          
     </ui:define>
 </ui:composition>
