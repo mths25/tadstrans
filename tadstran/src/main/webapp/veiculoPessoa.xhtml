@@ -30,7 +30,7 @@
                     <h:outputText value="#{objeto.anoModelo}" />
                 </p:column>
                 <p:column headerText="Carro">
-                    <h:outputText value="#{objeto.carro.marca.descricao}" />
+                    <h:outputText value="#{objeto.carro.descricao}" />
                 </p:column> 
                 <p:column headerText="Cor">
                     <h:outputText value="#{objeto.cor}" />
@@ -47,6 +47,11 @@
                 </p:column>                                                               
             </p:dataTable> 
             <br />
+            <div style="text-align: right">
+                <p:commandButton value="Novo Veículo" style="font-size: medium" type="buttom">
+                    <p:ajax event="click" listener="#{veiculobean.setNovoVeiculo()}" oncomplete="PF('dialogVeiculo').show()" />
+                </p:commandButton>
+            </div>
             <p:dialog header="Veiculo" id="dialogDadosVeiculo" widgetVar="dialogDadosVeiculo" modal="true">
                 <div class="ui-g">
                     <div class="ui-g-12">
@@ -61,8 +66,49 @@
                             <h:outputText value="Chassi:"/>
                             <h:outputText value="#{veiculobean.veiculo.chassi}"/>
 
-                            <h:outputText value="Ano de Fabricação"/>
+                            <h:outputText value="Ano de Fabricação:"/>
                             <h:outputText value="#{veiculobean.veiculo.anoFabricacao}"/>
+
+                            <h:outputText value="Ano do Modelo"/>
+                            <h:outputText value="#{veiculobean.veiculo.anoModelo}"/>
+
+                            <h:outputText value="Modelo:"/>
+                            <h:outputText value="#{veiculobean.veiculo.carro.descricao}"/>
+
+                            <h:outputText value="Marca:"/>
+                            <h:outputText value="#{veiculobean.veiculo.carro.marca.descricao}"/>
+
+                            <h:outputText value="Combustivel:"/>
+                            <h:outputText value="#{veiculobean.veiculo.combustivel}"/>
+
+                            <h:outputText value="Cor:"/>
+                            <h:outputText value="#{veiculobean.veiculo.cor}"/>
+
+                            <h:outputText value="Placa:"/>
+                            <h:outputText value="#{veiculobean.veiculo.placa}"/>
+
+                            <h:outputText value="Proprietário"/>
+                            <h:outputText value="#{veiculobean.veiculo.pessoa.nome}"/>
+                        </p:panelGrid>                        
+                    </div>                                        
+                </div>                                           
+            </p:dialog>
+            <p:dialog header="Veiculo" id="dialogMultasVeiculo" widgetVar="dialogMultasVeiculo" modal="true">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <p:panelGrid columns="2">
+                            <f:facet name="header" >
+                                <h:outputText style="font-size: x-large" value="Dados do veículo" />
+                            </f:facet>
+
+                            <h:outputText value="Renavam:"/>
+                            <h:outputText value="#{veiculobean.veiculo.renavam}"/>
+
+                            <h:outputText value="Documento:"/>
+                            <h:outputText value="Documento"/>
+
+                            <h:outputText value="Ano de Fabricação:"/>
+                            <h:outputText value=""/>
 
                             <h:outputText value="Ano do Modelo"/>
                             <h:outputText value="#{veiculobean.veiculo.anoModelo}"/>
@@ -81,6 +127,65 @@
                         </p:panelGrid>                        
                     </div>                                        
                 </div>                                           
+            </p:dialog>
+            <p:dialog header="Veiculo" id="dialogVeiculo" widgetVar="dialogVeiculo" modal="true">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <h2 class="titH2">Novo Veículo</h2>
+                    </div>
+                    <div class="ui-g-4">
+                        <p:outputLabel for="renavam" value="Renavam" /><br/>
+                        <p:inputMask id="renavam" value="#{veiculobean.veiculo.renavam}" mask="99999999999" required="true" requiredMessage="Digite o renavam do veiculo">
+                        </p:inputMask>
+                        <br /><br />
+                        <p:outputLabel for="chassi" value="Chassi" /><br/>
+                        <p:inputText id="chassi" value="#{veiculobean.veiculo.chassi}" required="true" requiredMessage="Digite o chassi do veiculo" /> 
+                        <br /><br />
+                        <p:outputLabel for="cor" value="Cor" /><br/>
+                        <p:inputText id="cor" value="#{veiculobean.veiculo.cor}" required="true" requiredMessage="Digite a cor do veiculo">
+                            <f:validateRegex pattern="[a-zA-Z]"/>
+                        </p:inputText>
+                        <br /><br />
+                        <p:outputLabel for="proprietario" value="Proprietario"/><br />
+                        <p:selectOneMenu value="#{veiculobean.veiculo.pessoa}" id="proprietario">                            
+                            <f:selectItems value="#{veiculobean.pessoas}" var="pessoa" itemLabel="#{pessoa.nome}" itemValue="#{pessoa}" />
+                        </p:selectOneMenu>
+                    </div>                    
+                    <div class="ui-g-4">                        
+                        <p:outputLabel for="ano" value="Ano de fabricação" /><br />
+                        <p:inputMask id="ano" value="#{veiculobean.veiculo.anoFabricacao}" mask="9999" required="true" requiredMessage="Digite o ano de fabricação do veículo" validatorMessage="Ano inválido" >
+                            <f:validateLongRange minimum="1807" maximum="2030"/> 
+                        </p:inputMask>
+                        <br /><br />
+                        <p:outputLabel for="anoModelo" value="Ano de modelo" /><br />
+                        <p:inputMask id="anoModelo" value="#{veiculobean.veiculo.anoModelo}" mask="9999" required="true" requiredMessage="Digite o ano do modelo de veículo" validatorMessage="Ano inválido" >
+                            <f:validateLongRange minimum="1807" maximum="2030"/> 
+                        </p:inputMask>
+                        <br /><br />
+                        <p:outputLabel for="placa" value="Placa" /><br/>
+                        <p:inputMask id="placa" value="#{veiculobean.veiculo.placa}" mask="aaa-9999" required="true" requiredMessage="Digite a placa do veiculo" />
+                        <br /><br />
+                        <p:outputLabel for="comb" value="Combustivel"/><br />
+                        <p:selectOneMenu id="comb" value="#{veiculobean.veiculo.combustivel}" >
+                            <f:selectItem itemLabel="Gasolina" itemValue="Gasolina"/>                        
+                            <f:selectItem itemLabel="Alcool" itemValue="Alcool"/>
+                            <f:selectItem itemLabel="Flex" itemValue="Flex"/>
+                        </p:selectOneMenu>
+                    </div>                    
+                    <div class="ui-g-4">
+                        <br /><br />
+                        <p:outputLabel for="modelo" value="Modelo" /><br/>
+                        <p:inputText id="modelo" value="#{veiculobean.veiculo.carro.descricao}" required="true" requiredMessage="Digite o modelo do veiculo" />   
+                        <br /><br />
+                        <p:outputLabel for="marca" value="Marca"/><br />
+                        <p:selectOneMenu value="#{veiculobean.carro.marca}" id="marca">                            
+                            <f:selectItems value="#{veiculobean.marcas}" var="marca" itemLabel="#{marca.descricao}" itemValue="#{marca}" />
+                        </p:selectOneMenu>
+                    </div> 
+                    <div class="ui-g-12" style="text-align: center">
+                        <p:commandButton value="Salvar" style="font-size: medium" actionListener="#{veiculobean.save}" />
+                    </div>
+                </div>                                 
             </p:dialog>
         </div>                          
     </ui:define>

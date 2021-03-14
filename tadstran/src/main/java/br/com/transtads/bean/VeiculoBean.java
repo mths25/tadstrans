@@ -1,5 +1,6 @@
 package br.com.transtads.bean;
 
+import br.com.transtads.dao.MarcaDao;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -18,6 +19,7 @@ import br.com.transtads.dao.PessoaDao;
 import br.com.transtads.dao.UsuarioDao;
 import br.com.transtads.dao.VeiculoDao;
 import br.com.transtads.persistence.Carro;
+import br.com.transtads.persistence.Marca;
 import br.com.transtads.persistence.Perfil;
 import br.com.transtads.persistence.Pessoa;
 import br.com.transtads.persistence.Usuario;
@@ -32,6 +34,8 @@ public class VeiculoBean {
     Pessoa pessoa = new Pessoa();
     Veiculo veiculo = new Veiculo();
     Carro carro = new Carro();
+    private List<Pessoa> pessoas;
+    private List<Marca> marcas;
 
     public Veiculo getVeiculo() {
         return veiculo;
@@ -74,6 +78,7 @@ public class VeiculoBean {
         PessoaDao pedao = new PessoaDao();
         VeiculoDao vdao = new VeiculoDao();
         if (veiculo.getId() == 0) {
+            veiculo.setPessoa(pessoa);
             vdao.inserir(veiculo);
         } else {
             vdao.alterar(veiculo);
@@ -106,7 +111,6 @@ public class VeiculoBean {
         veiculo = new Veiculo();
         carro = new Carro();
         veiculo.setCarro(carro);
-        
 
         //setListagem(pedao.listPolices());
     }
@@ -123,6 +127,21 @@ public class VeiculoBean {
     public void setVerVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
         PF.current().ajax().update("j_idt7:dialogDadosVeiculo");
+    }
+
+    public void setNovoVeiculo() {
+        this.veiculo = new Veiculo();
+        PF.current().ajax().update("j_idt7:dialogVeiculo");
+    }
+
+    public List<Pessoa> getPessoas() {
+        PessoaDao pdao = new PessoaDao();
+        return pdao.getList();
+    }
+    
+    public List<Marca> getMarcas() {
+        MarcaDao mdao = new MarcaDao();
+        return mdao.getList();
     }
 
 }
