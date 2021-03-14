@@ -37,7 +37,7 @@
                 </p:column>                                 
                 <p:column headerText="Ver" style="text-align: center" width="10%"> 
                     <p:commandButton icon="ui-icon-search" style="font-size: small" type="buttom">
-                        <p:ajax event="click" listener="#{veiculobean.setVerVeiculo(objeto)}" oncomplete="PF('dialogDadosVeiculo').show()" />
+                        <p:ajax event="click" listener="#{veiculobean.setVerVeiculo(objeto)}" oncomplete="PF('dialogDadosVeiculo').show()" update="dialogDadosVeiculo"/>
                     </p:commandButton>
                 </p:column>                                
                 <p:column headerText="Transferir" style="text-align: center" width="10%"> 
