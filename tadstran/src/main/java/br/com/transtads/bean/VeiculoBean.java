@@ -22,64 +22,66 @@ import br.com.transtads.persistence.Perfil;
 import br.com.transtads.persistence.Pessoa;
 import br.com.transtads.persistence.Usuario;
 import br.com.transtads.persistence.Veiculo;
+import org.primefaces.PF;
 
 @SessionScoped
 @ManagedBean(name = "veiculobean")
 public class VeiculoBean {
-	private List<Veiculo> listagem;
-	Pessoa pessoa = new Pessoa();
-	Veiculo veiculo = new Veiculo();
-	Carro carro = new Carro();
-	
-	public Veiculo getVeiculo() {
-		return veiculo;
-	}
 
-	public void setVeiculo(Veiculo veiculo) {
-		this.veiculo = veiculo;
-	}
-	
-	public Carro getCarro() {
-		return carro;
-	}
+    private List<Veiculo> listagem;
+    Pessoa pessoa = new Pessoa();
+    Veiculo veiculo = new Veiculo();
+    Carro carro = new Carro();
 
-	public void setCarro(Carro carro) {
-		this.carro = carro;
-	}
-	
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
 
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-	
-	public List<Veiculo> getListagem() {
-		return listagem;
-	}
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
 
-	public void setListagem(List<Veiculo> listagem) {
-		this.listagem = listagem;
-	}
+    public Carro getCarro() {
+        return carro;
+    }
 
-	public void refresh() {
-		PessoaDao pedao = new PessoaDao();
-		//setListagem(pedao.listPolices());
-	}
-	
-	public void save() {
-		PessoaDao pedao = new PessoaDao();
-		VeiculoDao vdao = new VeiculoDao();
-		if (veiculo.getId() == 0) {
-			vdao.inserir(veiculo);
-		} else {
-			vdao.alterar(veiculo);
-		}
-		refresh();
-	}
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
 
-	/*public void deletepessoa() {
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public List<Veiculo> getListagem() {
+        return listagem;
+    }
+
+    public void setListagem(List<Veiculo> listagem) {
+        this.listagem = listagem;
+    }
+
+    public void refresh() {
+        PessoaDao pedao = new PessoaDao();
+        //setListagem(pedao.listPolices());
+    }
+
+    public void save() {
+        PessoaDao pedao = new PessoaDao();
+        VeiculoDao vdao = new VeiculoDao();
+        if (veiculo.getId() == 0) {
+            vdao.inserir(veiculo);
+        } else {
+            vdao.alterar(veiculo);
+        }
+        refresh();
+    }
+
+    /*public void deletepessoa() {
 		PessoaDao pedao = new PessoaDao();
 		UsuarioDao udao = new UsuarioDao();
 		try {
@@ -96,27 +98,31 @@ public class VeiculoBean {
 			e.printStackTrace();
 		}
 	}*/
+    @PostConstruct
+    public void init() {
+        refresh();
+        VeiculoDao veiculodao = new VeiculoDao();
+        pessoa = new Pessoa();
+        veiculo = new Veiculo();
+        carro = new Carro();
+        veiculo.setCarro(carro);
+        veiculo.setPessoa(pessoa);
 
-	@PostConstruct
-	public void init() {
-		refresh();
-		VeiculoDao veiculodao = new VeiculoDao();
-		pessoa = new Pessoa();
-		veiculo = new Veiculo();
-		carro = new Carro();
-		veiculo.setCarro(carro);
-		veiculo.setPessoa(pessoa);
+        //setListagem(pedao.listPolices());
+    }
 
-		//setListagem(pedao.listPolices());
-	}
+    public void add() {
+        veiculo = new Veiculo();
+    }
 
-	public void add() {
-		veiculo = new Veiculo();
-	}
+    public List<Veiculo> listagem() {
+        VeiculoDao vedao = new VeiculoDao();
+        return vedao.getList();
+    }
 
-	public List<Veiculo> listagem() {
-		VeiculoDao vedao = new VeiculoDao();
-		return vedao.getList();
-	}
+    public void setVerVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+        PF.current().ajax().update("j_idt7:dialogDadosVeiculo");
+    }
 
 }
