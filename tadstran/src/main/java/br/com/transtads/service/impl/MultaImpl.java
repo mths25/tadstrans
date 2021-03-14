@@ -8,9 +8,10 @@ import javax.ws.rs.core.Response;
 
 import br.com.transtads.response.MultaResponse;
 
+
 public class MultaImpl {
 
-	private static String path = "/Multa";
+	private static String path = "/multa";
 
 	public MultaImpl() {
 	}
@@ -28,8 +29,8 @@ public class MultaImpl {
 		}
 	}
 
-	public List<MultaResponse> getListaMultaGenericSearch(String search) {
-		ResponseConfiguration responseConfig = new ResponseConfiguration(path + '/' +"genericSearch"+'/'+ search);
+	public List<MultaResponse> getMultasByRenavan(String search) {
+		ResponseConfiguration responseConfig = new ResponseConfiguration(path + '/'+"renavam"+'/' + search);
 		Response response = responseConfig.getClient().get();
 		if (response.getStatus() == 200) {
 			List<MultaResponse> retorno = response.readEntity(new GenericType<List<MultaResponse>>() {

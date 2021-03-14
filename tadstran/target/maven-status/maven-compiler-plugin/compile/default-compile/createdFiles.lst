@@ -27,6 +27,7 @@ br/com/transtads/response/MultaResponse.class
 br/com/transtads/persistence/Estado.class
 br/com/transtads/dao/VeiculoDao.class
 br/com/transtads/bean/PessoaMB.class
+br/com/transtads/service/impl/MultaImpl$1.class
 br/com/transtads/response/PagamentoResponse.class
 br/com/transtads/persistence/Perfil.class
 br/com/transtads/response/PerfilResponse.class
@@ -34,6 +35,7 @@ br/com/transtads/bean/UsuarioBean.class
 br/com/transtads/service/UsuarioResource.class
 br/com/transtads/persistence/Transferencia.class
 br/com/transtads/bean/LoginBean.class
+br/com/transtads/service/impl/ResponseConfiguration.class
 br/com/transtads/dao/EstadoDao.class
 br/com/transtads/persistence/Cidade.class
 br/com/transtads/dao/CarroDao.class
@@ -51,4 +53,5 @@ br/com/transtads/dao/PerfilDao.class
 br/com/transtads/dao/UsuarioDao.class
 br/com/transtads/response/UsuarioResponse.class
 br/com/transtads/dao/PermissaoDao.class
+br/com/transtads/service/impl/MultaImpl.class
 br/com/transtads/persistence/Pessoa.class

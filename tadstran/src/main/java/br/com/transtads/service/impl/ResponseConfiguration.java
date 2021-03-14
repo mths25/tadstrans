@@ -11,7 +11,7 @@ public class ResponseConfiguration {
 	private Builder client;
 	
 	public ResponseConfiguration(String endPoint) {
-		path = "http://localhost:8180/tadstran/webresources" + endPoint;
+		path = "http://localhost:8080/rest/webresources" + endPoint;
 		client = ClientBuilder.newClient().register(ResteasyJackson2Provider.class).target(path).request(MediaType.APPLICATION_JSON);
 	}
 	

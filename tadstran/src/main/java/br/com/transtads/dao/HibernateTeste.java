@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import br.com.transtads.persistence.Veiculo;
+import br.com.transtads.service.impl.MultaImpl;
 import br.com.transtads.persistence.Transferencia;
 import br.com.transtads.util.HibernateUtil;
 
@@ -20,8 +21,12 @@ public class HibernateTeste {
 		 */
 		
 		
-		VeiculoDao pdao = new VeiculoDao();
-		Veiculo v = pdao.getBy("placa", "RKE2534");
-		System.out.println(v);
+		MultaImpl mimpl = new MultaImpl();
+		
+		System.out.println(mimpl.getMultasByRenavan("44609582799"));
+		
+//		VeiculoDao pdao = new VeiculoDao();
+//		Veiculo v = pdao.getBy("placa", "RKE2534");
+//		System.out.println(v);
 	}
 }

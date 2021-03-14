@@ -12,6 +12,7 @@
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/persistence/Marca.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/dao/EstadoDao.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/bean/VeiculoMB.java
+/home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/service/impl/ResponseConfiguration.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/response/PerfilResponse.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/dao/HibernateTeste.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/dao/CidadeDao.java
@@ -36,6 +37,7 @@
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/converter/CarroConverter.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/converter/PerfilConverter.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/persistence/Cidade.java
+/home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/service/impl/MultaImpl.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/converter/VeiculoConverter.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/dao/VeiculoDao.java
 /home/rhonan/dac2021/tadstrans/tadstran/src/main/java/br/com/transtads/converter/TransferenciaConverter.java
