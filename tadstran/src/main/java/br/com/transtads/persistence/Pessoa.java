@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,13 +22,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="pessoa")
-public class Pessoa {
+public class Pessoa implements Serializable{
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="nome")
 	private String nome;
+	@Column(name = "sobrenome")
+	private String sobrenome;
 	@Column(name="email")
 	private String email;
 	@Column(name="logradouro")
@@ -54,7 +57,29 @@ public class Pessoa {
 			fetch = FetchType.LAZY)
 	private List<Veiculo> veiculos;
 	
+	
+	
+	public Pessoa(int id, String nome,String sobrenome, String email, 
+			String logradouro, String cep, String complemento,
+			 Cidade cidade,String documento, Usuario usuario, 
+			Transferencia transferencia, List<Veiculo> veiculos) {
+		this.id = id;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.logradouro = logradouro;
+		this.cep = cep;
+		this.complemento = complemento;
+		this.documento = documento;
+		this.transferencia = transferencia;
+		this.cidade = cidade;
+		this.usuario = usuario;
+		this.veiculos = veiculos;
+	}
+
 	public Pessoa() {}
+
+
 
 	public int getId() {
 		return id;
@@ -151,12 +176,13 @@ public class Pessoa {
             && Objects.equals(documento, other.documento)
             && Objects.equals(nome, other.nome)
             && Objects.equals(email, other.email)
+            && Objects.equals(veiculos, other.veiculos)
             && Objects.equals(usuario, other.usuario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, documento, nome, email, usuario);
+        return Objects.hash(id, documento, nome, email,usuario, veiculos);
     }
 
 	

@@ -106,7 +106,7 @@ public class VeiculoBean {
         veiculo = new Veiculo();
         carro = new Carro();
         veiculo.setCarro(carro);
-        veiculo.setPessoa(pessoa);
+        
 
         //setListagem(pedao.listPolices());
     }

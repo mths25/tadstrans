@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="usuario")
-public class Usuario {
+public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -90,7 +91,7 @@ public class Usuario {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, senha, perfil, pessoa);
+        return Objects.hash(id, login, senha, perfil);
     }
 
 	

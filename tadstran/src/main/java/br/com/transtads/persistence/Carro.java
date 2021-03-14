@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="carro")
-public class Carro {
+public class Carro implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -29,6 +30,7 @@ public class Carro {
 	@ManyToOne
 	@JoinColumn(name="idmarca")
 	private Marca marca;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="carro",
 			cascade=CascadeType.ALL,
@@ -58,11 +60,11 @@ public class Carro {
 		return marca;
 	}
 
-	public List<Veiculo> getVeiculo() {
+	public List<Veiculo> getVeiculos() {
 		return veiculos;
 	}
-	public void setVeiculo(List<Veiculo> veiculo) {
-		this.veiculos = veiculo;
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
 	}
 	public void setMarca(Marca marca) {
 		this.marca = marca;
@@ -85,7 +87,7 @@ public class Carro {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descricao, marca, veiculos);
+        return Objects.hash(id, descricao, marca);
     }
 	
 }

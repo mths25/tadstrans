@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="transferencia")
-public class Transferencia {
+public class Transferencia implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -28,10 +29,10 @@ public class Transferencia {
 	@JoinColumn(name="idveiculo")
 	private Veiculo veiculo;
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idorigem")
 	private Pessoa pessoaOrigem;
-	@JsonIgnore
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="iddestino")
 	private Pessoa pessoaDestino;
@@ -42,6 +43,20 @@ public class Transferencia {
 	private float valor;
 	
 	public Transferencia(){}
+
+	
+	
+	
+	public Transferencia(int id,  Veiculo veiculo,Date dataTransferencia,float valor, Pessoa pessoaDestino ) {
+		this.id = id;
+		this.veiculo = veiculo;
+		this.pessoaDestino = pessoaDestino;
+		this.dataTransferencia = dataTransferencia;
+		this.valor = valor;
+	}
+
+
+
 
 	public int getId() {
 		return id;

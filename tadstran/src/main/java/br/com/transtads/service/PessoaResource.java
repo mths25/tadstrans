@@ -61,6 +61,21 @@ public class PessoaResource {
 		}
 
 	}
+	
+	@GET
+	@Path("/genericSearch/{search}")  
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getPessoaGeneric(@PathParam("search") String search) {
+		List<Pessoa> Pessoas = PessoaDao.getGenericSearch(search);
+		if(Pessoas.isEmpty()) {
+			return Response.noContent().build();
+		}
+		else {			
+			return Response.ok(Response.Status.OK).entity(Pessoas).build();
+		}
+
+	}
 
 	@POST
 	@Path("/inserir")  

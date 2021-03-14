@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="marca")
-public class Marca {
+public class Marca implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
@@ -72,7 +73,7 @@ public class Marca {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descricao, carro);
+        return Objects.hash(id, descricao);
     }
 	
 }

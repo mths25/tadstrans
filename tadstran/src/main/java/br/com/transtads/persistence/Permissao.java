@@ -1,5 +1,6 @@
 package br.com.transtads.persistence;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -15,14 +16,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "permissao")
-public class Permissao {
+public class Permissao implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "descricao")
 	private String descricao;
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "permissoes",fetch = FetchType.LAZY)
 	private Collection<Perfil>perfis;
 
