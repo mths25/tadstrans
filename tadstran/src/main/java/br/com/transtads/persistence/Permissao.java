@@ -22,7 +22,7 @@ public class Permissao {
 	@Column(name = "descricao")
 	private String descricao;
 	
-	@JsonIgnore
+	
 	@ManyToMany(mappedBy = "permissoes",fetch = FetchType.LAZY)
 	private Collection<Perfil>perfis;
 

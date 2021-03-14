@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="marca")
 public class Marca {
@@ -21,7 +23,7 @@ public class Marca {
 	private int id;
 	@Column(name = "descricao")
 	private String descricao;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="marca",
 			cascade=CascadeType.ALL,
 			fetch=FetchType.LAZY)

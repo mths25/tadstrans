@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Estado")
 
@@ -22,6 +24,7 @@ public class Estado {
 	private String sigla;
 	@Column(name="nome")
 	private String nome;
+	
 	@OneToMany(mappedBy ="estado")
 	private List<Cidade> cidade;
 	

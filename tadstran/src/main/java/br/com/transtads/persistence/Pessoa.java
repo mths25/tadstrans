@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="pessoa")
@@ -46,7 +48,7 @@ public class Pessoa {
 	
 	@OneToOne(mappedBy="pessoaOrigem")
 	private Transferencia transferencia;
-	
+
 	@OneToMany(mappedBy = "pessoa",
 			cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY)

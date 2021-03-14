@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="veiculo")
 public class Veiculo {
@@ -35,7 +37,7 @@ public class Veiculo {
 	private String cor;
 	@Column(name="placa")
 	private String placa;
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="idpessoa")
 	private Pessoa pessoa;
@@ -43,7 +45,7 @@ public class Veiculo {
 	@ManyToOne
 	@JoinColumn(name="idcarro")
 	private Carro carro;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "veiculo",
 			cascade=CascadeType.ALL,
 			fetch=FetchType.LAZY)

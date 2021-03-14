@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="transferencia")
@@ -25,18 +27,17 @@ public class Transferencia {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idveiculo")
 	private Veiculo veiculo;
-	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idorigem")
 	private Pessoa pessoaOrigem;
-	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="iddestino")
 	private Pessoa pessoaDestino;
 	
 	@Column(name="datat")
 	private Date dataTransferencia;
-	
 	@Column(name="valor")
 	private float valor;
 	
