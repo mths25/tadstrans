@@ -37,6 +37,7 @@ br/com/transtads/persistence/Transferencia.class
 br/com/transtads/bean/LoginBean.class
 br/com/transtads/service/impl/ResponseConfiguration.class
 br/com/transtads/dao/EstadoDao.class
+br/com/transtads/service/impl/MultaImpl$2.class
 br/com/transtads/persistence/Cidade.class
 br/com/transtads/dao/CarroDao.class
 br/com/transtads/persistence/Carro.class

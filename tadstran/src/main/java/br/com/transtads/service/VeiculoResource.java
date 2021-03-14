@@ -82,6 +82,27 @@ public class VeiculoResource {
 
 	}
 	
+
+	@GET
+	@Path("/renavam/{search}")  
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getVeiculoByRenavam(@PathParam("search") String search) {
+		Veiculo Veiculo = VeiculoDao.getBy("renavam",search);
+		System.out.print(Veiculo);
+		if(Veiculo != null) {
+			return Response
+					.ok(Response.Status.OK)
+					.entity(Veiculo)
+					.build();
+
+		}
+		else {
+			return Response.ok(Response.Status.NO_CONTENT).entity(JsonNenhumResultadoEncontrado()).build();
+		}
+
+	}
+	
 	@POST
 	@Path("/inserir")  
 	@Produces(MediaType.APPLICATION_JSON)
