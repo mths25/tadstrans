@@ -100,7 +100,7 @@
 									<p:inputText id="complemento" value="#{pessoabean.pessoa.complemento}" />
 									<p:message for="complemento" display="text" />
 									
-									<p:commandButton value="Salvar" ajax="false" action="#{pessoabean.save}" />
+									<p:commandButton value="Salvar" ajax="false" action="index" actionListener="#{pessoabean.save}" />
 								</h:panelGrid>
 							  </h:form>
                         </div>
