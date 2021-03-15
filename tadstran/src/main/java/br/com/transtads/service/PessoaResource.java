@@ -76,6 +76,21 @@ public class PessoaResource {
 		}
 
 	}
+	
+	@GET
+	@Path("/personbyrenavam/{search}")  
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getPersonByRenavam(@PathParam("search") String search) {
+		List<Pessoa> Pessoas = PessoaDao.getPersonByRenavam(search);
+		if(Pessoas.isEmpty()) {
+			return Response.noContent().build();
+		}
+		else {			
+			return Response.ok(Response.Status.OK).entity(Pessoas).build();
+		}
+
+	}
 
 	@POST
 	@Path("/inserir")  

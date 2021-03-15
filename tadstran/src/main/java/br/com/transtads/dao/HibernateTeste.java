@@ -23,10 +23,13 @@ public class HibernateTeste {
 		
 		MultaImpl mimpl = new MultaImpl();
 		
-		System.out.println(mimpl.getMultasByRenavan("44609582799"));
+		PessoaDao pdao = new PessoaDao();
+		System.out.println(pdao.getPersonByRenavam("44609582799"));
+		//System.out.println(mimpl.getMultasByRenavan("44609582799"));
 		
 //		VeiculoDao pdao = new VeiculoDao();
-//		Veiculo v = pdao.getBy("placa", "RKE2534");
+//		Veiculo v = pdao.getBy("placa", "RKE2534");		System.out.println(mimpl.getMultasByRenavan("44609582799"));
+
 //		System.out.println(v);
 	}
 }

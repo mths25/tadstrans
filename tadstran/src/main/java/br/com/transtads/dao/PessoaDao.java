@@ -58,4 +58,39 @@ public class PessoaDao extends PersistenceDao<Pessoa> {
         return lista;
 	}
 
+	public List<Pessoa> getPersonByRenavam(String search){
+		List<Pessoa> lista = new ArrayList();
+        String sqlScript = "select p.* from pessoa p, veiculo v where p.id = v.idpessoa and v.renavam = ?";
+        Session session = sessionBuilder.getSession();
+        
+        SQLQuery qr = session.createSQLQuery(sqlScript);
+        qr.setParameter(0, search);
+        UsuarioDao udao = new UsuarioDao();
+        TransferenciaDao tdao = new TransferenciaDao();
+        VeiculoDao vdao = new VeiculoDao();
+        CidadeDao cdao = new CidadeDao();
+        Pessoa ev;
+        List<Object[]> objLst = qr.list();
+        if (!objLst.isEmpty()) {
+            for (Object[] obj : objLst) {
+                ev = new Pessoa(
+                        (int) obj[0], 
+                        (String) obj[1],
+                        (String) obj[2], 
+                        (String) obj[3], 
+                        (String) obj[4],
+                        (String) obj[5],
+                        (String) obj[6],
+                        cdao.getById((int)obj[7]),
+                        (String) obj[8],
+                        udao.getById((int)obj[9]),
+                        		tdao.getByPerson((int)obj[0]),
+                        				vdao.getListByPerson((int)obj[0]));
+                lista.add(ev);
+            }
+        }
+        return lista;
+	}
+
+	
 }
