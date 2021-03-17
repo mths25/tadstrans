@@ -49,6 +49,7 @@ br/com/transtads/dao/TransferenciaDao.class
 br/com/transtads/service/PessoaResource.class
 br/com/transtads/response/PontuacaoVeiculoResponse.class
 br/com/transtads/bean/PessoaBean.class
+br/com/transtads/service/impl/MultaImpl$3.class
 br/com/transtads/bean/BackingBean.class
 br/com/transtads/dao/PerfilDao.class
 br/com/transtads/dao/UsuarioDao.class

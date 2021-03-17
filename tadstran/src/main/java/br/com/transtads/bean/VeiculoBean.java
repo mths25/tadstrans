@@ -24,6 +24,8 @@ import br.com.transtads.persistence.Perfil;
 import br.com.transtads.persistence.Pessoa;
 import br.com.transtads.persistence.Usuario;
 import br.com.transtads.persistence.Veiculo;
+import br.com.transtads.service.impl.MultaImpl;
+
 import org.primefaces.PF;
 
 @SessionScoped
@@ -126,6 +128,12 @@ public class VeiculoBean {
 
     public void setVerVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
+        MultaImpl mimpl = new MultaImpl();
+        int mi = 0;
+        mi = mimpl.getMultasByRenavan(veiculo.getRenavam()).size();
+        this.veiculo.setMulta(mi);
+
+        
         PF.current().ajax().update("j_idt7:dialogDadosVeiculo");
     }
 

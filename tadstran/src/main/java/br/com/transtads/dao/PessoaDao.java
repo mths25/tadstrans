@@ -21,6 +21,11 @@ public class PessoaDao extends PersistenceDao<Pessoa> {
 		return getList(Order.asc("id"));
 	}
 
+    public Pessoa getBy(String attribute, Object value) {
+        Criterion ctrn = Restrictions.eq(attribute, value);
+        return getBy(ctrn);
+    }
+	
 	public List<Pessoa> getGenericSearch(String search){
 		List<Pessoa> lista = new ArrayList();
 

@@ -42,6 +42,19 @@ public class MultaImpl {
 		}
 	}
 	
+	public List<MultaResponse> getMultasByDoc(String search) {
+		ResponseConfiguration responseConfig = new ResponseConfiguration(path + '/'+"pessoa"+'/' + search);
+		Response response = responseConfig.getClient().get();
+		if (response.getStatus() == 200) {
+			List<MultaResponse> retorno = response.readEntity(new GenericType<List<MultaResponse>>() {
+			});
+			return retorno;
+		} else {
+			String retorno = response.readEntity(String.class);
+			return null;
+		}
+	}
+	
 	public MultaResponse getMulta(int id) {
 		ResponseConfiguration responseConfig = new ResponseConfiguration(path + '/' + id);
 		Response response = responseConfig.getClient().get();

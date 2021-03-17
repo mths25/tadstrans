@@ -15,8 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="veiculo")
@@ -43,6 +45,18 @@ public class Veiculo implements Serializable{
 	@JoinColumn(name="idpessoa")
 	private Pessoa pessoa;
 	
+	@Transient
+	@JsonIgnore
+	private int multa;
+	
+	public int getMulta() {
+		return multa;
+	}
+
+	public void setMulta(int multa) {
+		this.multa = multa;
+	}
+
 	public Veiculo(int id, String renavam, String chassi, String anoFabricacao, String anoModelo, String combustivel,
 			String cor, String placa, Carro carro) {
 		this.id = id;
